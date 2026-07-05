@@ -57,6 +57,10 @@ Combat systems read/write attributes **by name** (e.g. `Poise` / `MaxPoise` / `P
 `AttributeSet` types. Generate your own attribute sets with the core's **codegen** tool and follow the
 recommended name convention — combat doesn't ship or require any specific `AS_*`.
 
+### Editor cheat sheet
+
+Authored **in the Editor, no code** — *Create → Sigil → Combat → …*: **Attack Definition**, **Bullet Definition**, **Combat Settings**, **Ability Action Library**, **Damage Execution**. (Attribute sets come from the core's Attribute Set Definition codegen.) Full table in the [usage guide](Documentation~/Usage.md) §6.
+
 ## Samples
 
 - **Playable Demo** (`Samples~/PlayableDemo`) — a playable feature-showcase (player/enemy prefabs +

@@ -52,6 +52,10 @@
 `GuardDamageNegation` / `IncomingDamage`），不绑定具体 `AttributeSet` 类型。用核心的 **codegen** 工具生成
 你自己的属性集、遵循推荐命名约定即可——combat 不附带、也不要求任何特定 `AS_*`。
 
+### 编辑器速查
+
+**在编辑器里配、零代码** —— *Create → Sigil → Combat → …*：**Attack Definition**、**Bullet Definition**、**Combat Settings**、**Ability Action Library**、**Damage Execution**。（属性集用核心的 Attribute Set Definition codegen 生成。）完整表格见[使用文档](Documentation~/Usage.zh-CN.md) §6。
+
 ## 示例
 
 - **Playable Demo**（`Samples~/PlayableDemo`）——可玩功能展示（玩家/敌人 prefab + 场景），演示

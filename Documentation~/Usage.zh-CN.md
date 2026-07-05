@@ -52,8 +52,21 @@ Combat 只依赖核心。它按**名字**读写属性，所以能和你用核心
   （`com.likeon.gas.movement`）组合：第三人称运动 + 武器切换、攻击多态、闪现、蓄力火球、威胁型 AI 敌人。
   随附 `CombatCore` 桥接件。**需要 `com.likeon.gas.movement`。**
 
-## 6. 另见
+## 6. 编辑器速查
 
-- 核心 `Documentation~/使用文档` — 能力、效果、属性（含 **codegen**）、标签、输入、配方。
+本包给创建菜单加了这些——**在编辑器里配、零代码**（*Create → Sigil → Combat → …*，Project 窗口右键）：
+
+| 菜单项 | 是什么 |
+|---|---|
+| **Attack Definition** | 命中后施加什么（效果、cue、击退/顿帧）。带增强 Inspector。 |
+| **Bullet Definition** | 投射物（速度/散射/穿透/子弹链）。 |
+| **Combat Settings** | 项目级战斗配置（查询标签、调试开关）。 |
+| **Ability Action Library** | 按来源/目标状态选动作（连段选择）。 |
+| **Damage Execution** | 减伤+格挡伤害模型（`GameplayEffectExecutionCalculation`），可继承/替换。 |
+
+本包**不附带**属性集——战斗按名解析属性；用核心的 **Attribute Set Definition** codegen 生成你自己的（§2）。
+
+## 7. 另见
+
+- 核心 `Documentation~/使用文档` — 能力、效果、属性（含 **codegen**）、标签、输入、配方，以及完整的编辑器速查（§21）。
 - `com.likeon.gas.movement` — 移动配套包（在 Combat Demo 里与 combat 搭配）。
-```

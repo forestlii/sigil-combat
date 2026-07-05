@@ -58,7 +58,21 @@ it by forwarding to the movement/combat components present on the object.
   polymorphism, a Flash blink, a hold-to-charge Fireball, and threat-AI enemies. Ships the `CombatCore`
   bridge. **Requires `com.likeon.gas.movement`.**
 
-## 6. See also
+## 6. Editor cheat sheet
 
-- Core `Documentation~/Usage.md` — abilities, effects, attributes (incl. **codegen**), tags, input, recipes.
+This package adds the following to the Create menu — authored **in the Editor, no code** (*Create → Sigil → Combat → …*, right-click in the Project window):
+
+| Menu item | What it is |
+|---|---|
+| **Attack Definition** | What to apply on hit (effects, cues, knockback / hit-stop). Has an enhanced inspector. |
+| **Bullet Definition** | Projectile (speed / spread / penetration / bullet chains). |
+| **Combat Settings** | Project-level combat config (query tags, debug toggles). |
+| **Ability Action Library** | Pick actions by source/target state (combo selection). |
+| **Damage Execution** | A negation + guard damage model (`GameplayEffectExecutionCalculation`); subclass/replace it. |
+
+Attribute sets are **not** shipped here — combat resolves attributes by name; generate your own with the core's **Attribute Set Definition** codegen (§2).
+
+## 7. See also
+
+- Core `Documentation~/Usage.md` — abilities, effects, attributes (incl. **codegen**), tags, input, recipes, and the full editor cheat sheet (§21).
 - `com.likeon.gas.movement` — the movement companion (pairs with combat in the Combat Demo).
