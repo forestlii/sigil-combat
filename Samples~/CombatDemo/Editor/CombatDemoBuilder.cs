@@ -26,6 +26,7 @@ namespace Likeon.GAS.Sample.CombatDemo.Editor
             if (guids.Length == 0) { Debug.LogError("[CombatDemo] 找不到 CombatDemoControls.inputactions"); return; }
             string actionsPath = AssetDatabase.GUIDToAssetPath(guids[0]);
             string dir = System.IO.Path.GetDirectoryName(actionsPath).Replace('\\', '/');
+            _buildDir = dir; // 供 SetColor 把材质存成资产（见其注释）
 
             var refs = AssetDatabase.LoadAllAssetsAtPath(actionsPath).OfType<InputActionReference>().ToList();
             InputActionReference Ref(string n) => refs.FirstOrDefault(r => r.action != null && r.action.name == n);
@@ -273,7 +274,7 @@ namespace Likeon.GAS.Sample.CombatDemo.Editor
             Object.DestroyImmediate(vis.GetComponent<Collider>());
             vis.transform.SetParent(player.transform, false);
             vis.transform.localPosition = new Vector3(0f, 1f, 0f);
-            SetColor(vis, new Color(0.25f, 0.5f, 0.9f));
+            SetColor(vis, new Color(0.25f, 0.5f, 0.9f), "Mat_CombatDemo_Player");
 
             // 近战判定 socket（角色前方）
             var socket = new GameObject("WeaponSocket").transform;
@@ -312,7 +313,7 @@ namespace Likeon.GAS.Sample.CombatDemo.Editor
         {
             var enemy = GameObject.CreatePrimitive(PrimitiveType.Capsule);
             enemy.name = "Enemy";
-            SetColor(enemy, new Color(0.85f, 0.3f, 0.25f));
+            SetColor(enemy, new Color(0.85f, 0.3f, 0.25f), "Mat_CombatDemo_Enemy");
             // 删掉图元的 CapsuleCollider：否则它与 CharacterController 重叠，CC 会撞自己的胶囊卡住移动。
             // 命中/锁定改由 CharacterController（本身也是 Collider）承担。
             var primCol = enemy.GetComponent<Collider>();
@@ -395,12 +396,26 @@ namespace Likeon.GAS.Sample.CombatDemo.Editor
             return p;
         }
 
-        private static void SetColor(GameObject go, Color c)
+        private static string _buildDir;
+
+        // 给图元染色。⚠️ 材质必须存成**资产**再赋值：直接 `new Material(...)` 是内存对象，
+        // SaveAsPrefabAsset 时无法序列化 → prefab 材质槽变 None → 加载后洋红"丢失材质"。
+        private static void SetColor(GameObject go, Color c, string matName)
         {
             var mr = go.GetComponent<MeshRenderer>();
             if (mr == null) return;
-            var shader = Shader.Find("Standard") ?? Shader.Find("Unlit/Color");
-            if (shader != null) mr.sharedMaterial = new Material(shader) { color = c };
+            var shader = Shader.Find("Standard")
+                      ?? Shader.Find("Universal Render Pipeline/Lit")
+                      ?? Shader.Find("Sprites/Default");
+            if (shader == null) return;
+            var mat = new Material(shader) { color = c };
+
+            string matDir = _buildDir + "/Materials";
+            if (!AssetDatabase.IsValidFolder(matDir)) AssetDatabase.CreateFolder(_buildDir, "Materials");
+            string matPath = $"{matDir}/{matName}.mat";
+            AssetDatabase.DeleteAsset(matPath); // 重建幂等
+            AssetDatabase.CreateAsset(mat, matPath);
+            mr.sharedMaterial = mat;
         }
 
         // 用 SerializedObject 接私有序列化字段（对象引用 / 对象列表 / GameplayTag）

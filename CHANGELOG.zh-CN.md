@@ -5,6 +5,12 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
+## [0.1.2] - 2026-07-05
+
+### 修复
+
+- **Combat Demo —— 玩家/敌人 prefab 不再显示丢失（洋红）材质。** 场景生成器给胶囊染色时用了内存里的 `new Material(...)` 当 `sharedMaterial`，但它不是资产，`SaveAsPrefabAsset` 无法序列化 → prefab 材质槽存成了 `None` → 导入后渲染成洋红。生成器现在先把染色材质存成真 `.mat` 资产（`Samples~/CombatDemo/Materials/`）再赋值，让随包 prefab 引用持久材质。用 *Sigil ▸ GAS ▸ Samples ▸ Build Combat Demo Scene* 重烘。
+
 ## [0.1.1] - 2026-07-05
 
 ### 新增
@@ -35,5 +41,6 @@ Sigil Combat 的所有重要变更记录于此。
 - 战斗按**名字**解析属性（不写死 `AS_*`）；用核心的 codegen 工具按推荐命名约定生成属性集。
 - 需配套对应的 Sigil 核心版本（`com.likeon.gas` ≥ 0.7.0，该版已移除内置 `Combat/`）。
 
+[0.1.2]: #012---2026-07-05
 [0.1.1]: #011---2026-07-05
 [0.1.0]: #010---2026-07-05

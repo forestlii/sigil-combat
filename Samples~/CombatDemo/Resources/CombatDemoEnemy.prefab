@@ -76,7 +76,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 630d27a27bf025547bb55824b8279505, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d161f02cfffb474db6326ee789f3ca2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Likeon.GAS.Movement::Likeon.GAS.CombatCore
+  m_EditorClassIdentifier: Sigil.Combat.Sample.CombatDemo::Likeon.GAS.CombatCore
   mover: {fileID: 0}
   inputSystem: {fileID: 0}
   combatSystem: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92dbc33c0b338b445b5aaeb3d53e9d42, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.CombatTeamAgent
+  m_EditorClassIdentifier: Likeon.GAS.Combat::Likeon.GAS.CombatTeamAgent
   teamId: 1
 --- !u!114 &6492721746356868751
 MonoBehaviour:
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13fd47002d3c5184ba64a82677acd463, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.CombatSystemComponent
+  m_EditorClassIdentifier: Likeon.GAS.Combat::Likeon.GAS.CombatSystemComponent
   animator: {fileID: 0}
   abilitySystem: {fileID: 0}
   actionLibrary: {fileID: 0}
@@ -223,8 +223,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c7001ac67769e54eb51a980b70a0838, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.PoiseComponent
+  m_EditorClassIdentifier: Likeon.GAS.Combat::Likeon.GAS.PoiseComponent
   abilitySystem: {fileID: 0}
+  poiseName: Poise
+  maxPoiseName: MaxPoise
+  poiseRecoverName: PoiseRecover
   staggeredTag:
     tagName: 
   staggerEffect: {fileID: 0}
@@ -241,7 +244,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9ea776693969ea468b798e757f57651, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.MeleeAttackTrace
+  m_EditorClassIdentifier: Likeon.GAS.Combat::Likeon.GAS.MeleeAttackTrace
   entries:
   - Attack: {fileID: 11400000, guid: c5ccaa953f855c641991cc978621dba5, type: 2}
     Trace:

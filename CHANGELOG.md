@@ -6,6 +6,12 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.2] - 2026-07-05
+
+### Fixed
+
+- **Combat Demo — the player/enemy prefabs no longer show a missing (magenta) material.** The scene builder tinted the capsules with an in-memory `new Material(...)` assigned as `sharedMaterial`; that material was never an asset, so `SaveAsPrefabAsset` couldn't serialize it and the prefab's material slot was saved as `None` — rendering magenta on import. The builder now saves the tint materials as real `.mat` assets (`Samples~/CombatDemo/Materials/`) before assigning them, so the shipped prefabs reference persistent materials. Re-bake with *Sigil ▸ GAS ▸ Samples ▸ Build Combat Demo Scene*.
+
 ## [0.1.1] - 2026-07-05
 
 ### Added
@@ -39,5 +45,6 @@ independent and don't depend on each other.
   codegen tool following the recommended name convention.
 - Requires the matching Sigil core release (`com.likeon.gas` ≥ 0.7.0, which removed the built-in `Combat/`).
 
+[0.1.2]: #012---2026-07-05
 [0.1.1]: #011---2026-07-05
 [0.1.0]: #010---2026-07-05
