@@ -70,6 +70,8 @@ This package adds the following to the Create menu — authored **in the Editor,
 | **Ability Action Library** | Pick actions by source/target state (combo selection). |
 | **Damage Execution** | A negation + guard damage model (`GameplayEffectExecutionCalculation`); subclass/replace it. |
 
+**Tool:** *GameObject ▸ Sigil ▸ Combat Character Setup* (or *Sigil ▸ GAS ▸ Setup ▸ Add Combat Character Components*) adds the common combat components to the selected object(s) in one click — `AbilitySystemComponent` + `CombatTeamAgent` + `CombatSystemComponent` + `PoiseComponent` (idempotent, undoable). The components stay separate and single-responsibility; add `TargetingSystemComponent` / `MeleeAttackTrace` / `WeaponComponent` per character as needed.
+
 Attribute sets are **not** shipped here — combat resolves attributes by name; generate your own with the core's **Attribute Set Definition** codegen (§2).
 
 ## 7. See also

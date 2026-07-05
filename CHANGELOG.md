@@ -6,6 +6,12 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.3] - 2026-07-05
+
+### Added
+
+- **One-click "Combat Character Setup"** (*GameObject ▸ Sigil ▸ Combat Character Setup*, or *Sigil ▸ GAS ▸ Setup ▸ Add Combat Character Components*). Adds the common combat components to the selected object(s) if missing — `AbilitySystemComponent` + `CombatTeamAgent` + `CombatSystemComponent` + `PoiseComponent` (idempotent, undoable). The components stay **separate, single-responsibility** — this is a setup convenience, not a merged "combat" component — so role-specific pieces (`TargetingSystemComponent` / `MeleeAttackTrace` / `WeaponComponent`) are still added per character as needed.
+
 ## [0.1.2] - 2026-07-05
 
 ### Fixed
@@ -45,6 +51,7 @@ independent and don't depend on each other.
   codegen tool following the recommended name convention.
 - Requires the matching Sigil core release (`com.likeon.gas` ≥ 0.7.0, which removed the built-in `Combat/`).
 
+[0.1.3]: #013---2026-07-05
 [0.1.2]: #012---2026-07-05
 [0.1.1]: #011---2026-07-05
 [0.1.0]: #010---2026-07-05

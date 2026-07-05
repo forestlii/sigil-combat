@@ -59,7 +59,7 @@ recommended name convention — combat doesn't ship or require any specific `AS_
 
 ### Editor cheat sheet
 
-Authored **in the Editor, no code** — *Create → Sigil → Combat → …*: **Attack Definition**, **Bullet Definition**, **Combat Settings**, **Ability Action Library**, **Damage Execution**. (Attribute sets come from the core's Attribute Set Definition codegen.) Full table in the [usage guide](Documentation~/Usage.md) §6.
+Authored **in the Editor, no code** — *Create → Sigil → Combat → …*: **Attack Definition**, **Bullet Definition**, **Combat Settings**, **Ability Action Library**, **Damage Execution**. (Attribute sets come from the core's Attribute Set Definition codegen.) **Tool:** *GameObject ▸ Sigil ▸ Combat Character Setup* one-click-adds the common combat components (ASC + team + combat system + poise) to a character. Full table in the [usage guide](Documentation~/Usage.md) §6.
 
 ## Samples
 

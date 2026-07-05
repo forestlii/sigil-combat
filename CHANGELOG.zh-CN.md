@@ -5,6 +5,12 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
+## [0.1.3] - 2026-07-05
+
+### 新增
+
+- **一键「Combat Character Setup」**（*GameObject ▸ Sigil ▸ Combat Character Setup*，或 *Sigil ▸ GAS ▸ Setup ▸ Add Combat Character Components*）。给选中对象补齐常用战斗组件（缺才加、可撤销）：`AbilitySystemComponent` + `CombatTeamAgent` + `CombatSystemComponent` + `PoiseComponent`。组件保持**各自独立、单一职责**——这是配置便利，**不是**合并的"战斗"大组件——所以角色专属件（`TargetingSystemComponent` / `MeleeAttackTrace` / `WeaponComponent`）仍按需另加。
+
 ## [0.1.2] - 2026-07-05
 
 ### 修复
@@ -41,6 +47,7 @@ Sigil Combat 的所有重要变更记录于此。
 - 战斗按**名字**解析属性（不写死 `AS_*`）；用核心的 codegen 工具按推荐命名约定生成属性集。
 - 需配套对应的 Sigil 核心版本（`com.likeon.gas` ≥ 0.7.0，该版已移除内置 `Combat/`）。
 
+[0.1.3]: #013---2026-07-05
 [0.1.2]: #012---2026-07-05
 [0.1.1]: #011---2026-07-05
 [0.1.0]: #010---2026-07-05

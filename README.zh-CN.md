@@ -54,7 +54,7 @@
 
 ### 编辑器速查
 
-**在编辑器里配、零代码** —— *Create → Sigil → Combat → …*：**Attack Definition**、**Bullet Definition**、**Combat Settings**、**Ability Action Library**、**Damage Execution**。（属性集用核心的 Attribute Set Definition codegen 生成。）完整表格见[使用文档](Documentation~/Usage.zh-CN.md) §6。
+**在编辑器里配、零代码** —— *Create → Sigil → Combat → …*：**Attack Definition**、**Bullet Definition**、**Combat Settings**、**Ability Action Library**、**Damage Execution**。（属性集用核心的 Attribute Set Definition codegen 生成。）**工具：** *GameObject ▸ Sigil ▸ Combat Character Setup* 一键给角色补齐常用战斗组件（ASC + 阵营 + 战斗中枢 + 削韧）。完整表格见[使用文档](Documentation~/Usage.zh-CN.md) §6。
 
 ## 示例
 

@@ -64,6 +64,8 @@ Combat 只依赖核心。它按**名字**读写属性，所以能和你用核心
 | **Ability Action Library** | 按来源/目标状态选动作（连段选择）。 |
 | **Damage Execution** | 减伤+格挡伤害模型（`GameplayEffectExecutionCalculation`），可继承/替换。 |
 
+**工具：** *GameObject ▸ Sigil ▸ Combat Character Setup*（或 *Sigil ▸ GAS ▸ Setup ▸ Add Combat Character Components*）一键给选中对象补齐常用战斗组件——`AbilitySystemComponent` + `CombatTeamAgent` + `CombatSystemComponent` + `PoiseComponent`（缺才加、可撤销）。组件各自独立、单一职责；`TargetingSystemComponent` / `MeleeAttackTrace` / `WeaponComponent` 按角色需要另加。
+
 本包**不附带**属性集——战斗按名解析属性；用核心的 **Attribute Set Definition** codegen 生成你自己的（§2）。
 
 ## 7. 另见
