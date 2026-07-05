@@ -6,6 +6,12 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.4] - 2026-07-05
+
+### Changed
+
+- **Combat Demo — the fireball's ground reticle is now an `AbilityTask`** (`AbilityTask_GroundReticle`) instead of a persistent `CombatDemoFireballReticle` MonoBehaviour (removed). The task owns the reticle disk's whole lifecycle: it creates the disk on activate, updates position/radius each frame from a sampler the ability supplies, and — because the framework auto-cancels a ability's tasks on end — destroys the disk automatically when the fireball ends (no manual show/hide, no persistent component, no leak). Demonstrates the preferred pattern: reach for a framework primitive (AbilityTask) rather than a bespoke component. (Requires core ≥ 0.7.1, which lets AbilityTasks be subclassed outside the core assembly.)
+
 ## [0.1.3] - 2026-07-05
 
 ### Added
@@ -51,6 +57,7 @@ independent and don't depend on each other.
   codegen tool following the recommended name convention.
 - Requires the matching Sigil core release (`com.likeon.gas` ≥ 0.7.0, which removed the built-in `Combat/`).
 
+[0.1.4]: #014---2026-07-05
 [0.1.3]: #013---2026-07-05
 [0.1.2]: #012---2026-07-05
 [0.1.1]: #011---2026-07-05

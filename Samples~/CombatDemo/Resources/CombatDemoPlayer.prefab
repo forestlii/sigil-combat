@@ -162,7 +162,6 @@ GameObject:
   - component: {fileID: 7301358408905522717}
   - component: {fileID: 5049405615729325301}
   - component: {fileID: 1057046730660833763}
-  - component: {fileID: 8247918218587971660}
   - component: {fileID: 8504306919636723911}
   - component: {fileID: 3210866095875679918}
   m_Layer: 0
@@ -410,19 +409,6 @@ MonoBehaviour:
   sourceCombat: {fileID: 0}
   damageDataTag:
     tagName: 
---- !u!114 &8247918218587971660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3614742352598559947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c754bfb3db8cd4c9e91ef62d9eb47c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Sigil.Combat.Sample.CombatDemo::Likeon.GAS.Sample.CombatDemo.CombatDemoFireballReticle
-  Color: {r: 1, g: 0.45, b: 0.1, a: 0.55}
 --- !u!114 &8504306919636723911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,7 +424,6 @@ MonoBehaviour:
   ASC: {fileID: 2162055835719021509}
   Targeting: {fileID: 5049405615729325301}
   Mover: {fileID: 8490586514335699958}
-  Reticle: {fileID: 8247918218587971660}
   Muzzle: {fileID: 5573867643789865415}
   MeleeWeapon: {fileID: 8386068410822463240}
   RangedWeapon: {fileID: 4396156731302939862}

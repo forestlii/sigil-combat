@@ -36,12 +36,14 @@ namespace Likeon.GAS.Sample.CombatDemo
         [Header("瞄准")]
         [Tooltip("光标/发射的最大水平距离（米）")]
         public float MaxAimDistance = 14f;
+        [Tooltip("地面 AoE 光标颜色")]
+        public Color ReticleColor = new Color(1f, 0.45f, 0.1f, 0.55f);
 
         // ---- 运行时（技能为按持有者克隆的实例，存实例状态安全）----
         private float _charge;
         private Vector3 _aimPoint;
         private bool _fired;
-        private CombatDemoFireballReticle _reticle;
+        private AbilityTask_GroundReticle _reticleTask;
 
         protected override void OnActivateAbility(GameplayEventData triggerData)
         {
@@ -51,9 +53,10 @@ namespace Likeon.GAS.Sample.CombatDemo
             _fired = false;
             _aimPoint = ASC.transform.position + ASC.transform.forward * (MaxAimDistance * 0.5f);
 
-            var ctrl = ASC.GetComponent<CombatDemoController>();
-            _reticle = ctrl != null ? ctrl.Reticle : ASC.GetComponentInChildren<CombatDemoFireballReticle>();
-            if (_reticle != null) _reticle.Show();
+            // 光标交给 AbilityTask：它自建圆盘、每帧读 sampler 更新、技能结束时框架自动取消→销毁（无需持久组件/手写 Hide）
+            _reticleTask = AbilityTask_GroundReticle.Show(this, ReticleColor,
+                () => (_aimPoint, Mathf.Lerp(MinBlastRadius, MaxBlastRadius, ChargeFraction())));
+            _reticleTask.Activate();
 
             // 等松手（同一发射输入标签的 Canceled）→ 释放
             var release = AbilityTask_WaitInputPress.WaitInputPress(
@@ -67,11 +70,7 @@ namespace Likeon.GAS.Sample.CombatDemo
         public override void AbilityTick(float deltaTime)
         {
             _charge = Mathf.Min(MaxChargeTime, _charge + deltaTime);
-            float f = ChargeFraction();
-
-            _aimPoint = ComputeAimPoint();
-            if (_reticle != null)
-                _reticle.SetState(_aimPoint, Mathf.Lerp(MinBlastRadius, MaxBlastRadius, f));
+            _aimPoint = ComputeAimPoint(); // 光标由 AbilityTask 每帧读 _aimPoint + 蓄力半径自行更新
         }
 
         private void Release()
@@ -134,7 +133,8 @@ namespace Likeon.GAS.Sample.CombatDemo
         protected override void OnEndAbility(bool wasCancelled)
         {
             EnableTick = false;
-            if (_reticle != null) _reticle.Hide();
+            // 光标任务无需手动清理：技能结束时框架会 ExternalCancel 所有未结束任务
+            // → AbilityTask_GroundReticle.OnDestroy 自动销毁圆盘。
         }
 
         private float ChargeFraction() => MaxChargeTime > 0f ? Mathf.Clamp01(_charge / MaxChargeTime) : 1f;

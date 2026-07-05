@@ -5,6 +5,12 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
+## [0.1.4] - 2026-07-05
+
+### 变更
+
+- **Combat Demo —— 火球的地面光标改成 `AbilityTask`**（`AbilityTask_GroundReticle`），删掉了原来那个持久的 `CombatDemoFireballReticle` MonoBehaviour。任务掌管光标圆盘的整个生命周期：激活时建圆盘、每帧按技能给的 sampler 更新落点/半径，而且——因为框架会在技能结束时自动取消其任务——火球结束时**自动销毁圆盘**（无需手动 show/hide、无持久组件、零泄漏）。示范首选做法：优先用框架原语（AbilityTask）而不是新写一个专用组件。（需核心 ≥ 0.7.1，该版让 AbilityTask 可在核心程序集外派生。）
+
 ## [0.1.3] - 2026-07-05
 
 ### 新增
@@ -47,6 +53,7 @@ Sigil Combat 的所有重要变更记录于此。
 - 战斗按**名字**解析属性（不写死 `AS_*`）；用核心的 codegen 工具按推荐命名约定生成属性集。
 - 需配套对应的 Sigil 核心版本（`com.likeon.gas` ≥ 0.7.0，该版已移除内置 `Combat/`）。
 
+[0.1.4]: #014---2026-07-05
 [0.1.3]: #013---2026-07-05
 [0.1.2]: #012---2026-07-05
 [0.1.1]: #011---2026-07-05

@@ -57,7 +57,7 @@ namespace Likeon.GAS.Sample.CombatDemo.Tests
             Assert.IsNotNull(player.GetComponent<InputSystemComponent>(), "应含输入组件");
             Assert.IsNotNull(player.GetComponent<CombatCore>(), "应含 CombatCore");
             Assert.IsNotNull(player.GetComponent<CombatDemoController>(), "应含 CombatDemoController");
-            Assert.IsNotNull(player.GetComponent<CombatDemoFireballReticle>(), "应含火球光标");
+            // 火球光标不再是持久组件——GA_Fireball 用 AbilityTask_GroundReticle 运行时自建（激活火球时才出现）
 
             // loadout 授予了属性集 + 技能
             Assert.Greater(Health(asc), 0f, "应授予 AS_Health");

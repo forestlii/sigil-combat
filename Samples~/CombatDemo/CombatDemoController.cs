@@ -16,7 +16,6 @@ namespace Likeon.GAS.Sample.CombatDemo
         public AbilitySystemComponent ASC;
         public TargetingSystemComponent Targeting;
         public CharacterMovementSystemComponent Mover;
-        public CombatDemoFireballReticle Reticle;
         [Tooltip("远程/火球发射起点")]
         public Transform Muzzle;
         [Tooltip("近战武器（Weapon.Melee 标签）")]
@@ -34,7 +33,6 @@ namespace Likeon.GAS.Sample.CombatDemo
             if (ASC == null) ASC = GetComponent<AbilitySystemComponent>();
             if (Targeting == null) Targeting = GetComponent<TargetingSystemComponent>();
             if (Mover == null) Mover = GetComponent<CharacterMovementSystemComponent>();
-            if (Reticle == null) Reticle = GetComponentInChildren<CombatDemoFireballReticle>(true);
         }
 
         private void OnEnable() => Subscribe();

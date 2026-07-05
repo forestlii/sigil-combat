@@ -288,8 +288,7 @@ namespace Likeon.GAS.Sample.CombatDemo.Editor
             muzzle.SetParent(player.transform, false);
             muzzle.localPosition = new Vector3(0f, 1.4f, 0.6f);
 
-            // 火球光标
-            var reticle = player.AddComponent<CombatDemoFireballReticle>();
+            // 火球光标：不再挂持久组件——GA_Fireball 用 AbilityTask_GroundReticle 运行时自建/自销毁
 
             // 两把武器（子物体，注入 Weapon.* 标签供攻击多态）
             var meleeWeapon = MakeWeapon(player.transform, "MeleeWeapon", CombatDemoTags.Weapon_Melee);
@@ -301,7 +300,7 @@ namespace Likeon.GAS.Sample.CombatDemo.Editor
             WireInputSystem(ic, config, setup);
 
             var ctrl = player.AddComponent<CombatDemoController>();
-            ctrl.ASC = asc; ctrl.Targeting = targeting; ctrl.Mover = mover; ctrl.Reticle = reticle;
+            ctrl.ASC = asc; ctrl.Targeting = targeting; ctrl.Mover = mover;
             ctrl.Muzzle = muzzle; ctrl.MeleeWeapon = meleeWeapon; ctrl.RangedWeapon = rangedWeapon;
 
             var demo = player.AddComponent<CombatDemo>();
