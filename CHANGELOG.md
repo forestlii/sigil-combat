@@ -6,7 +6,7 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.1.0] - 2026-07-05
 
 First release as a standalone companion package. **Extracted from the Sigil core package**
 (`com.likeon.gas`) so the GAS core stays a pure ability-system framework, restoring the module
@@ -33,4 +33,4 @@ independent and don't depend on each other.
   codegen tool following the recommended name convention.
 - Requires the matching Sigil core release (`com.likeon.gas` ≥ 0.7.0, which removed the built-in `Combat/`).
 
-[Unreleased]: #unreleased
+[0.1.0]: #010---2026-07-05

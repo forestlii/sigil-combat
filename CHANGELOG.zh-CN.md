@@ -5,7 +5,7 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
-## [Unreleased]
+## [0.1.0] - 2026-07-05
 
 作为独立配套包的首个版本。**从 Sigil 核心包（`com.likeon.gas`）拆出**，让 GAS 核心回归纯能力系统框架，
 恢复原战斗框架本就有的模块边界（能力/属性/战斗是三个独立模块）。命名空间不变（`Likeon.GAS`）。
@@ -29,4 +29,4 @@ Sigil Combat 的所有重要变更记录于此。
 - 战斗按**名字**解析属性（不写死 `AS_*`）；用核心的 codegen 工具按推荐命名约定生成属性集。
 - 需配套对应的 Sigil 核心版本（`com.likeon.gas` ≥ 0.7.0，该版已移除内置 `Combat/`）。
 
-[Unreleased]: #unreleased
+[0.1.0]: #010---2026-07-05
