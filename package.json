@@ -1,0 +1,31 @@
+{
+  "name": "com.likeon.gas.combat",
+  "version": "0.1.0",
+  "displayName": "Sigil Combat - Melee, Ranged & Attack Companion",
+  "description": "Combat companion for Sigil (com.likeon.gas). A data-driven melee & ranged combat layer built on the GAS core: attack definitions, hit detection (melee trace / collision trace), a combat flow pipeline (request → result → processors), poise & poise-break, targeting / lock-on, weapons, bullets, a team agent, and a damage execution calculation. Attribute-name-based (no hard-coded attribute sets) so it composes with your own codegen attributes. Depends on the Sigil core package. Independent Unity implementation; single-player authoritative.",
+  "unity": "6000.4",
+  "keywords": [
+    "combat",
+    "melee",
+    "ranged",
+    "action rpg",
+    "poise",
+    "targeting",
+    "lock-on",
+    "sigil",
+    "gas"
+  ],
+  "author": {
+    "name": "Likeon"
+  },
+  "dependencies": {
+    "com.likeon.gas": "0.7.0"
+  },
+  "samples": [
+    {
+      "displayName": "Playable Demo",
+      "description": "A playable feature-showcase demo shipped as prefabs + scene: player/enemy prefabs + PlayableDemo scene, demonstrating input → ability → melee/ranged hit → damage → GameplayCue, lock-on target switching, poise break, and buff stacking. Attributes & abilities come from data-driven initialLoadouts. Import, open the PlayableDemo scene and press Play (WASD move / Shift sprint / mouse look / Space or left-click attack).",
+      "path": "Samples~/PlayableDemo"
+    }
+  ]
+}

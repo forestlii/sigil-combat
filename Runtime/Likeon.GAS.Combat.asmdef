@@ -1,0 +1,16 @@
+{
+  "name": "Likeon.GAS.Combat",
+  "rootNamespace": "Likeon.GAS",
+  "references": [
+    "Likeon.GAS.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Likeon.GAS.Sample.PlayableDemo",
+  "rootNamespace": "Likeon.GAS.Sample.PlayableDemo",
+  "references": [
+    "Likeon.GAS.Runtime",
+    "Likeon.GAS.Combat",
+    "Unity.InputSystem"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [
+    "ENABLE_INPUT_SYSTEM"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

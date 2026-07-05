@@ -1,0 +1,19 @@
+{
+  "name": "Likeon.GAS.Combat.Editor",
+  "rootNamespace": "Likeon.GAS.Combat.Editor",
+  "references": [
+    "Likeon.GAS.Runtime",
+    "Likeon.GAS.Combat"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
