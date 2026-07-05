@@ -63,6 +63,11 @@ recommended name convention — combat doesn't ship or require any specific `AS_
   scene) demonstrating input → ability → melee/ranged hit → damage → GameplayCue, lock-on target
   switching, poise break, and buff stacking, all driven by data-driven loadouts. Import, open
   `PlayableDemo.unity`, press Play.
+- **Combat Demo** (`Samples~/CombatDemo`) — an **integration demo** composing this package with the
+  movement companion (`com.likeon.gas.movement`): third-person locomotion + weapon switching (Tab),
+  attack polymorphism (dash / normal / ranged), a Flash blink (Q) and a hold-to-charge Fireball
+  (damage + stun scale with charge), plus threat-AI enemies. Ships the `CombatCore` bridge
+  (`ICombatInterface` impl). **Requires `com.likeon.gas.movement`.**
 
 ## License
 

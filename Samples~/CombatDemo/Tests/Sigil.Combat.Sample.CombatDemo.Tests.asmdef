@@ -1,0 +1,31 @@
+{
+  "name": "Sigil.Combat.Sample.CombatDemo.Tests",
+  "rootNamespace": "Likeon.GAS.Sample.CombatDemo.Tests",
+  "references": [
+    "Likeon.GAS.Runtime",
+    "Likeon.GAS.Movement",
+    "Likeon.GAS.Combat",
+    "Sigil.Combat.Sample.CombatDemo",
+    "UnityEngine.TestRunner"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS",
+    "SIGIL_HAS_TEST_FRAMEWORK"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.unity.test-framework",
+      "expression": "",
+      "define": "SIGIL_HAS_TEST_FRAMEWORK"
+    }
+  ],
+  "noEngineReferences": false
+}

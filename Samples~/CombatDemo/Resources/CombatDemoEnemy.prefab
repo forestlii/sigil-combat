@@ -1,0 +1,309 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &838785927510212092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5490090834085100138}
+  - component: {fileID: 776905943264688942}
+  - component: {fileID: 6975634062989762052}
+  - component: {fileID: 4820484820574059878}
+  - component: {fileID: 7842635156254588479}
+  - component: {fileID: 3740536754240881866}
+  - component: {fileID: 4667297893931775509}
+  - component: {fileID: 4601301340325854293}
+  - component: {fileID: 6492721746356868751}
+  - component: {fileID: 2516253822673535897}
+  - component: {fileID: 3313080647332244501}
+  - component: {fileID: 7375989303549882472}
+  m_Layer: 0
+  m_Name: CombatDemoEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5490090834085100138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7638224782925130080}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &776905943264688942
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6975634062989762052
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4820484820574059878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bbdaee68c4bc3e4397ad36f97d67b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.AbilitySystemComponent
+  initialLoadouts:
+  - {fileID: 11400000, guid: 39dbc91aa4e7a0a4387ffbb4398dddb7, type: 2}
+  attributeInitializeLevel: 1
+  InteractionRules: {fileID: 0}
+--- !u!143 &7842635156254588479
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3740536754240881866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ad337fdeb0d474e909b339560f1eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Likeon.GAS.Movement::Likeon.GAS.CharacterMovementSystemComponent
+  ownedTags:
+    tags: []
+  movementDefinitions:
+  - {fileID: 11400000, guid: 126b8dd12087d674fbd6719cb6c691a5, type: 2}
+  movementSet:
+    tagName: 
+  desiredMovementState:
+    tagName: Movement.State.Jog
+  desiredRotationMode:
+    tagName: Movement.Rotation.VelocityDirection
+  gravity: -20
+  viewReference: {fileID: 0}
+--- !u!114 &4667297893931775509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d161f02cfffb474db6326ee789f3ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Likeon.GAS.Movement::Likeon.GAS.CombatCore
+  mover: {fileID: 0}
+  inputSystem: {fileID: 0}
+  combatSystem: {fileID: 0}
+  targeting: {fileID: 0}
+  weapon: {fileID: 0}
+  blockInputTag:
+    tagName: 
+--- !u!114 &4601301340325854293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92dbc33c0b338b445b5aaeb3d53e9d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.CombatTeamAgent
+  teamId: 1
+--- !u!114 &6492721746356868751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13fd47002d3c5184ba64a82677acd463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.CombatSystemComponent
+  animator: {fileID: 0}
+  abilitySystem: {fileID: 0}
+  actionLibrary: {fileID: 0}
+--- !u!114 &2516253822673535897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7001ac67769e54eb51a980b70a0838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.PoiseComponent
+  abilitySystem: {fileID: 0}
+  staggeredTag:
+    tagName: 
+  staggerEffect: {fileID: 0}
+  staggerDuration: 1
+  recoverDelay: 0.5
+--- !u!114 &3313080647332244501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ea776693969ea468b798e757f57651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.MeleeAttackTrace
+  entries:
+  - Attack: {fileID: 11400000, guid: c5ccaa953f855c641991cc978621dba5, type: 2}
+    Trace:
+      TraceTag:
+        tagName: 
+      SocketTransforms:
+      - {fileID: 7638224782925130080}
+      TraceRadius: 1
+      HitLayers:
+        serializedVersion: 2
+        m_Bits: 0
+  sourceAbilitySystem: {fileID: 0}
+  sourceCombat: {fileID: 0}
+  damageDataTag:
+    tagName: 
+--- !u!114 &7375989303549882472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838785927510212092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ad549c2b5a78d4da25092e8c642d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Sigil.Combat.Sample.CombatDemo::Likeon.GAS.Sample.CombatDemo.CombatDemoEnemyAI
+  ASC: {fileID: 4820484820574059878}
+  Mover: {fileID: 3740536754240881866}
+  Target: {fileID: 0}
+  AttackRange: 2.2
+  LeashRange: 0
+  AttackCooldown: 2
+  DespawnDelay: 2
+--- !u!1 &6901011285293747162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7638224782925130080}
+  m_Layer: 0
+  m_Name: WeaponSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7638224782925130080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901011285293747162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5490090834085100138}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

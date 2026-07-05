@@ -1,0 +1,19 @@
+{
+    "name": "Sigil.Combat.Sample.CombatDemo",
+    "rootNamespace": "Likeon.GAS.Sample.CombatDemo",
+    "references": [
+        "Likeon.GAS.Movement",
+        "Likeon.GAS.Runtime",
+        "Likeon.GAS.Combat",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

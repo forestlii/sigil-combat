@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c679fe486d8bee42a39547c8ab4da89, type: 3}
+  m_Name: Bullet_CombatDemo_Ranged
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.BulletDefinition
+  Duration: 3
+  BulletCount: 1
+  LaunchAngle: 0
+  LaunchAngleInterval: 10
+  LaunchElevationAngle: 0
+  InitialSpeed: 26
+  GravityScale: 0
+  HitRadius: 0.35
+  HitLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  PenetrateCharacter: 0
+  PenetrateMap: 0
+  Attack: {fileID: 11400000, guid: d9cbfd597e17c2a46889f790e4556377, type: 2}
+  HitBulletDefinition: {fileID: 0}

@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef149a5afa9d6847aca662852642d60, type: 3}
+  m_Name: CombatDemo_InputControlSetup
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.InputControlSetup
+  inputCheckers: []
+  enableInputBuffer: 0
+  inputProcessorExecutionType: 1
+  inputProcessors:
+  - rid: 1873596492765462528
+  - rid: 1873596492765462529
+  - rid: 1873596492765462530
+  - rid: 1873596492765462531
+  - rid: 1873596492765462532
+  - rid: 1873596492765462533
+  - rid: 1873596492765462534
+  - rid: 1873596492765462535
+  - rid: 1873596492765462536
+  - rid: 1873596492765462537
+  references:
+    version: 2
+    RefIds:
+    - rid: 1873596492765462528
+      type: {class: InputProcessor_Move, ns: Likeon.GAS, asm: Likeon.GAS.Movement}
+      data:
+        InputTags:
+          tags:
+          - tagName: InputTag.Move
+        TriggerEvents: 020000000100000004000000
+        CameraRelative: 1
+    - rid: 1873596492765462529
+      type: {class: InputProcessor_Look, ns: Likeon.GAS, asm: Likeon.GAS.Movement}
+      data:
+        InputTags:
+          tags:
+          - tagName: InputTag.Look
+        TriggerEvents: 0200000001000000
+        Sensitivity: 1
+        InvertY: 0
+    - rid: 1873596492765462530
+      type: {class: InputProcessor_ToggleAbilityByTag, ns: Likeon.GAS, asm: Likeon.GAS.Movement}
+      data:
+        InputTags:
+          tags:
+          - tagName: Input.Movement.Sprint
+        TriggerEvents: 02000000
+        AbilityTag:
+          tagName: Ability.Movement.Sprint
+    - rid: 1873596492765462531
+      type: {class: InputProcessor_ActivateAbilityByTag, ns: Likeon.GAS, asm: Likeon.GAS.Runtime}
+      data:
+        InputTags:
+          tags:
+          - tagName: Input.Combat.Attack
+        TriggerEvents: 02000000
+        StateQuery:
+          exprType: 0
+          tags:
+          - tagName: Movement.State.Sprint
+          - tagName: Weapon.Melee
+          expressions: []
+        AbilityTag:
+          tagName: Ability.Combat.DashAttack
+    - rid: 1873596492765462532
+      type: {class: InputProcessor_ActivateAbilityByTag, ns: Likeon.GAS, asm: Likeon.GAS.Runtime}
+      data:
+        InputTags:
+          tags:
+          - tagName: Input.Combat.Attack
+        TriggerEvents: 02000000
+        StateQuery:
+          exprType: 0
+          tags:
+          - tagName: Weapon.Melee
+          expressions: []
+        AbilityTag:
+          tagName: Ability.Combat.Melee
+    - rid: 1873596492765462533
+      type: {class: InputProcessor_ActivateAbilityByTag, ns: Likeon.GAS, asm: Likeon.GAS.Runtime}
+      data:
+        InputTags:
+          tags:
+          - tagName: Input.Combat.Attack
+        TriggerEvents: 02000000
+        StateQuery:
+          exprType: 0
+          tags:
+          - tagName: Weapon.Ranged
+          expressions: []
+        AbilityTag:
+          tagName: Ability.Combat.Ranged
+    - rid: 1873596492765462534
+      type: {class: InputProcessor_ActivateAbilityByTag, ns: Likeon.GAS, asm: Likeon.GAS.Runtime}
+      data:
+        InputTags:
+          tags:
+          - tagName: Input.Combat.Fireball
+        TriggerEvents: 02000000
+        StateQuery:
+          exprType: 0
+          tags: []
+          expressions: []
+        AbilityTag:
+          tagName: Ability.Combat.Fireball
+    - rid: 1873596492765462535
+      type: {class: InputProcessor_ActivateAbilityByTag, ns: Likeon.GAS, asm: Likeon.GAS.Runtime}
+      data:
+        InputTags:
+          tags:
+          - tagName: Input.Combat.Flash
+        TriggerEvents: 02000000
+        StateQuery:
+          exprType: 0
+          tags: []
+          expressions: []
+        AbilityTag:
+          tagName: Ability.Combat.Flash
+    - rid: 1873596492765462536
+      type: {class: InputProcessor_SendGameplayEvent, ns: Likeon.GAS, asm: Likeon.GAS.Runtime}
+      data:
+        InputTags:
+          tags:
+          - tagName: Input.Combat.SwitchWeapon
+        TriggerEvents: 02000000
+        EventTag:
+          tagName: Event.Combat.SwitchWeapon
+    - rid: 1873596492765462537
+      type: {class: InputProcessor_SendGameplayEvent, ns: Likeon.GAS, asm: Likeon.GAS.Runtime}
+      data:
+        InputTags:
+          tags:
+          - tagName: Input.Combat.LockOn
+        TriggerEvents: 02000000
+        EventTag:
+          tagName: Event.Combat.ToggleLock

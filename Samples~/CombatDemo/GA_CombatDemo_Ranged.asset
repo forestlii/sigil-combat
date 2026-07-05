@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685567efb4c750d45b731056e453b1f2, type: 3}
+  m_Name: GA_CombatDemo_Ranged
+  m_EditorClassIdentifier: Sigil.Combat.Sample.CombatDemo::Likeon.GAS.Sample.CombatDemo.GA_RangedAttack
+  AbilityTags:
+  - tagName: Ability.Combat.Ranged
+  ActivationGroup: 0
+  EnableTick: 0
+  ActivateOnGranted: 0
+  ActivationOwnedLooseTags: []
+  ActivationRequiredTags: []
+  ActivationBlockedTags:
+  - tagName: State.Stunned
+  - tagName: State.Staggered
+  CostEffect: {fileID: 0}
+  CooldownEffect: {fileID: 11400000, guid: 0858d68eb2a169d46a047d192a9e5023, type: 2}
+  AdditionalCosts: []
+  EffectContainerMap:
+    entries: []
+  Bullet: {fileID: 11400000, guid: 7eee9d0435e36f84391ac9ca6f9d16c8, type: 2}

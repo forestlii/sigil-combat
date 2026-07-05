@@ -41,13 +41,16 @@ Combat 只依赖核心。它按**名字**读写属性，所以能和你用核心
 ## 4. 战斗契约（`ICombatInterface`）
 
 其它系统经 `ICombatInterface` 查询角色——目标、当前武器、防御输入、移动输入方向、移动模式、死亡生命周期。
-由你的角色实现。**Playable Demo** 与 movement 包的 **Combat Demo** 展示了一个桥接组件（`CombatCore`）：
+由你的角色实现。**Playable Demo** 与 **Combat Demo** 两个示例都随附一个桥接组件（`CombatCore`）：
 它转发到物体上在场的移动/战斗组件来实现这个接口。
 
 ## 5. 示例
 
-从 Package Manager 导入 **Playable Demo**（`Samples~/PlayableDemo`），一个烘好即玩的场景，
-在核心 + 本包上展示完整循环（近战/远程/锁定/韧性/叠层）。
+- **Playable Demo**（`Samples~/PlayableDemo`）——一个烘好即玩的场景，在核心 + 本包上展示完整循环
+  （近战/远程/锁定/韧性/叠层）。不需要移动包。
+- **Combat Demo**（`Samples~/CombatDemo`）——一个**集成 demo**，把本包与移动配套包
+  （`com.likeon.gas.movement`）组合：第三人称运动 + 武器切换、攻击多态、闪现、蓄力火球、威胁型 AI 敌人。
+  随附 `CombatCore` 桥接件。**需要 `com.likeon.gas.movement`。**
 
 ## 6. 另见
 

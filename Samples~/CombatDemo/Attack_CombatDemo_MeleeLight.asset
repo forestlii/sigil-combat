@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0433cf1ec1ba60348a4498a2815b4568, type: 3}
+  m_Name: Attack_CombatDemo_MeleeLight
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.AttackDefinition
+  AttackTags: []
+  SetByCallerMagnitudes:
+  - Tag:
+      tagName: Data.Damage
+    Value: 18
+  - Tag:
+      tagName: Data.PoiseDamage
+    Value: 1.5
+  TargetEffect: {fileID: 11400000, guid: 6e2befdc484b3554eae4b1b54848495e, type: 2}
+  TargetEffectLevel: 1
+  TargetEffectContainer:
+    TargetGameplayEffects: []
+    SelfGameplayEffects: []
+  TargetGameplayCues: []
+  KnockbackDistance: 1
+  KnockbackMultiplier: 1
+  HitStallingDuration: 0
+  HitPlayRateFactor: 0.1

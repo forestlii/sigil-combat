@@ -57,6 +57,10 @@
 - **Playable Demo**（`Samples~/PlayableDemo`）——可玩功能展示（玩家/敌人 prefab + 场景），演示
   输入 → 技能 → 近战/远程命中 → 扣血 → GameplayCue、锁定切换、削韧破防、buff 叠层，全由数据驱动的
   loadout 驱动。导入后打开 `PlayableDemo.unity` 按 Play。
+- **Combat Demo**（`Samples~/CombatDemo`）——一个**集成 demo**，把本包与移动配套包
+  （`com.likeon.gas.movement`）组合起来：第三人称运动 + 武器切换（Tab）、攻击多态（冲刺/普攻/远程）、
+  闪现（Q）、长按蓄力火球（伤害+眩晕随蓄力缩放）、威胁型 AI 敌人。随附 `CombatCore` 桥接件
+  （`ICombatInterface` 实现）。**需要 `com.likeon.gas.movement`。**
 
 ## 许可证
 

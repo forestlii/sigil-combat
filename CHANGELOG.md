@@ -6,6 +6,12 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] - 2026-07-05
+
+### Added
+
+- **Combat Demo sample** (`Samples~/CombatDemo`) — moved here from the movement package. An integration demo composing this combat package with the movement companion (`com.likeon.gas.movement`): third-person locomotion + weapon switching, attack polymorphism (dash/normal/ranged), a Flash blink, a hold-to-charge Fireball (damage + stun scale with charge), and threat-AI enemies — all built on GAS. It ships the `CombatCore` bridge (`ICombatInterface` implementation). **Requires `com.likeon.gas.movement`** (a sample-level dependency; the package itself still does not depend on movement).
+
 ## [0.1.0] - 2026-07-05
 
 First release as a standalone companion package. **Extracted from the Sigil core package**
@@ -33,4 +39,5 @@ independent and don't depend on each other.
   codegen tool following the recommended name convention.
 - Requires the matching Sigil core release (`com.likeon.gas` ≥ 0.7.0, which removed the built-in `Combat/`).
 
+[0.1.1]: #011---2026-07-05
 [0.1.0]: #010---2026-07-05

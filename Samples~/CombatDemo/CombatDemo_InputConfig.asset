@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df7b9bf64f8fb194aa654ba0fae41694, type: 3}
+  m_Name: CombatDemo_InputConfig
+  m_EditorClassIdentifier: Likeon.GAS.Runtime::Likeon.GAS.InputConfig
+  InputActionMappings:
+  - InputTag:
+      tagName: InputTag.Move
+    Action: {fileID: -8865277670247736633, guid: 6195c7f914f14f24ca6d0be293fc794e, type: 3}
+    ValueBinding: 1
+  - InputTag:
+      tagName: InputTag.Look
+    Action: {fileID: 8871546774823484104, guid: 6195c7f914f14f24ca6d0be293fc794e, type: 3}
+    ValueBinding: 1
+  - InputTag:
+      tagName: Input.Movement.Sprint
+    Action: {fileID: 5705056280347696901, guid: 6195c7f914f14f24ca6d0be293fc794e, type: 3}
+    ValueBinding: 0
+  - InputTag:
+      tagName: Input.Combat.Attack
+    Action: {fileID: -5123744133817190874, guid: 6195c7f914f14f24ca6d0be293fc794e, type: 3}
+    ValueBinding: 0
+  - InputTag:
+      tagName: Input.Combat.SwitchWeapon
+    Action: {fileID: 8048027026738321879, guid: 6195c7f914f14f24ca6d0be293fc794e, type: 3}
+    ValueBinding: 0
+  - InputTag:
+      tagName: Input.Combat.Fireball
+    Action: {fileID: -8675680867616903877, guid: 6195c7f914f14f24ca6d0be293fc794e, type: 3}
+    ValueBinding: 0
+  - InputTag:
+      tagName: Input.Combat.Flash
+    Action: {fileID: 3338882568843034579, guid: 6195c7f914f14f24ca6d0be293fc794e, type: 3}
+    ValueBinding: 0
+  - InputTag:
+      tagName: Input.Combat.LockOn
+    Action: {fileID: -6507360831069339993, guid: 6195c7f914f14f24ca6d0be293fc794e, type: 3}
+    ValueBinding: 0
+  InputBufferDefinitions: []

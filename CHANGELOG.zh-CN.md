@@ -5,6 +5,12 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
+## [0.1.1] - 2026-07-05
+
+### 新增
+
+- **Combat Demo 示例**（`Samples~/CombatDemo`）——从 movement 包迁来。这是组合本战斗包与移动配套包（`com.likeon.gas.movement`）的集成 demo：第三人称运动 + 武器切换、攻击多态（冲刺/普攻/远程）、闪现、蓄力火球（伤害+眩晕随蓄力缩放）、威胁型 AI 敌人——全部搭在 GAS 上。随附 `CombatCore` 桥接件（`ICombatInterface` 实现）。**需要 `com.likeon.gas.movement`**（示例级依赖；包本体仍不依赖 movement）。
+
 ## [0.1.0] - 2026-07-05
 
 作为独立配套包的首个版本。**从 Sigil 核心包（`com.likeon.gas`）拆出**，让 GAS 核心回归纯能力系统框架，
@@ -29,4 +35,5 @@ Sigil Combat 的所有重要变更记录于此。
 - 战斗按**名字**解析属性（不写死 `AS_*`）；用核心的 codegen 工具按推荐命名约定生成属性集。
 - 需配套对应的 Sigil 核心版本（`com.likeon.gas` ≥ 0.7.0，该版已移除内置 `Combat/`）。
 
+[0.1.1]: #011---2026-07-05
 [0.1.0]: #010---2026-07-05

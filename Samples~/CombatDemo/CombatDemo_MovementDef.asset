@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dabf54bc49ef034cb69ac6e29b32285, type: 3}
+  m_Name: CombatDemo_MovementDef
+  m_EditorClassIdentifier: Likeon.GAS.Movement::Likeon.GAS.MovementDefinition
+  MovementSets:
+  - MovementSet:
+      tagName: 
+    States:
+    - State:
+        tagName: Movement.State.Walk
+      Speed: 1.5
+      StrafeSpeed: 1.2
+      BackwardsSpeed: 0.90000004
+      Acceleration: 8
+      BrakingDeceleration: 10
+      RotationInterpolationSpeed: 12
+    - State:
+        tagName: Movement.State.Jog
+      Speed: 3.75
+      StrafeSpeed: 3
+      BackwardsSpeed: 2.25
+      Acceleration: 8
+      BrakingDeceleration: 10
+      RotationInterpolationSpeed: 12
+    - State:
+        tagName: Movement.State.Sprint
+      Speed: 6.5
+      StrafeSpeed: 5.2000003
+      BackwardsSpeed: 3.9
+      Acceleration: 8
+      BrakingDeceleration: 10
+      RotationInterpolationSpeed: 12

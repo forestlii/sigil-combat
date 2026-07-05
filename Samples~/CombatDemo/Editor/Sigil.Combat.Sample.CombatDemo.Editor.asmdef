@@ -1,0 +1,22 @@
+{
+    "name": "Sigil.Combat.Sample.CombatDemo.Editor",
+    "rootNamespace": "Likeon.GAS.Sample.CombatDemo.Editor",
+    "references": [
+        "Sigil.Combat.Sample.CombatDemo",
+        "Likeon.GAS.Movement",
+        "Likeon.GAS.Runtime",
+        "Likeon.GAS.Combat",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

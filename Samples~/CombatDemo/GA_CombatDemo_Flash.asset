@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e316a59892db1c4d8c36bc2b2d5aacf, type: 3}
+  m_Name: GA_CombatDemo_Flash
+  m_EditorClassIdentifier: Sigil.Combat.Sample.CombatDemo::Likeon.GAS.Sample.CombatDemo.GA_Flash
+  AbilityTags:
+  - tagName: Ability.Combat.Flash
+  ActivationGroup: 0
+  EnableTick: 0
+  ActivateOnGranted: 0
+  ActivationOwnedLooseTags: []
+  ActivationRequiredTags: []
+  ActivationBlockedTags:
+  - tagName: State.Stunned
+  - tagName: State.Staggered
+  CostEffect: {fileID: 11400000, guid: 7047b83707edb32458c77ce35de98c02, type: 2}
+  CooldownEffect: {fileID: 11400000, guid: 4b79e2f60dacb1a4ca917b4b0573537a, type: 2}
+  AdditionalCosts: []
+  EffectContainerMap:
+    entries: []
+  FlashDistance: 5
+  ObstacleCheckRadius: 0.4
+  ObstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

@@ -46,13 +46,17 @@ combat framework. Only the *names* matter — combat doesn't care which set they
 
 Other systems query a character through `ICombatInterface` — target, current weapon, block input,
 movement-input direction, movement modes, and death lifecycle. Your character implements it. The
-**Playable Demo** and the movement package's **Combat Demo** show a bridge component (`CombatCore`)
-that implements it by forwarding to the movement/combat components present on the object.
+**Playable Demo** and **Combat Demo** samples ship a bridge component (`CombatCore`) that implements
+it by forwarding to the movement/combat components present on the object.
 
-## 5. Sample
+## 5. Samples
 
-Import **Playable Demo** (`Samples~/PlayableDemo`) from the Package Manager for a ready-baked,
-playable scene showing the full loop (melee/ranged/lock-on/poise/stacking) on the core + this package.
+- **Playable Demo** (`Samples~/PlayableDemo`) — a ready-baked, playable scene showing the full loop
+  (melee/ranged/lock-on/poise/stacking) on the core + this package. No movement package needed.
+- **Combat Demo** (`Samples~/CombatDemo`) — an **integration demo** composing this package with the
+  movement companion (`com.likeon.gas.movement`): third-person locomotion + weapon switching, attack
+  polymorphism, a Flash blink, a hold-to-charge Fireball, and threat-AI enemies. Ships the `CombatCore`
+  bridge. **Requires `com.likeon.gas.movement`.**
 
 ## 6. See also
 
