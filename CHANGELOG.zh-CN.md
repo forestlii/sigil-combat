@@ -5,6 +5,12 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
+## [0.1.6] - 2026-07-09
+
+### 变更
+
+- **性能 —— 子弹池化（行为不变）。** `BulletLauncher` 现在从共享空闲池借子弹、失效时（命中停下 / 生命到期）回收复用，不再每发 `new GameObject` + `Destroy`，避免每次发射的 GC 分配。回收的子弹在复用前会重置（清事件订阅者、置非活跃）。直接 new（不经发射器）的子弹仍自销毁 —— 行为不变。新增 `BulletLauncher.ClearPool()`（测试 / 场景切换用）与 `BulletLauncher.PooledCount` 供调试。
+
 ## [0.1.5] - 2026-07-08
 
 ### 变更

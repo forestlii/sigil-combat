@@ -6,6 +6,12 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.6] - 2026-07-09
+
+### Changed
+
+- **Performance — bullet pooling (no behavior change).** `BulletLauncher` now rents bullets from a shared idle pool and recycles them on expiry (hit-stop / lifetime end) instead of `new GameObject` + `Destroy` per shot, avoiding per-fire GC. Recycled bullets are reset (event subscribers cleared, deactivated) before reuse. Bullets created directly (not via the launcher) still self-destroy — behavior unchanged. Adds `BulletLauncher.ClearPool()` (for tests / scene changes) and `BulletLauncher.PooledCount` for debugging.
+
 ## [0.1.5] - 2026-07-08
 
 ### Changed

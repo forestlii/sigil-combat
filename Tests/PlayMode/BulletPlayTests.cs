@@ -24,6 +24,7 @@ namespace Likeon.GAS.PlayTests
         [TearDown]
         public void Cleanup()
         {
+            BulletLauncher.ClearPool(); // 清静态子弹池，隔离测试间状态
             foreach (var go in _spawned) if (go != null) Object.Destroy(go);
             foreach (var a in _assets) if (a != null) Object.Destroy(a);
             _spawned.Clear(); _assets.Clear();
@@ -180,6 +181,30 @@ namespace Likeon.GAS.PlayTests
 
             Assert.AreEqual(0, hits, "友军不应被命中");
             Assert.AreEqual(friendHealth.MaxHealth.CurrentValue, friendHealth.Health.CurrentValue, 0.1f, "友军不应掉血");
+        }
+
+        // ============ F) 池化：失效回池 + 复用 ============
+        [Test]
+        public void F_ExpiredBullet_IsPooled_AndReused()
+        {
+            BulletLauncher.ClearPool();
+            var def = NewAsset<BulletDefinition>();
+            def.InitialSpeed = 10f; def.Duration = 0.1f; def.BulletCount = 1; // 无目标 → 生命到期失效
+
+            var first = BulletLauncher.Fire(def, null, null, Vector3.zero, Vector3.forward)[0];
+            first.AutoTick = false;
+            first.Tick(0.2f); // > Duration → Expire → 回池
+
+            Assert.IsFalse(first.IsActive, "生命到期应失效");
+            Assert.AreEqual(1, BulletLauncher.PooledCount, "失效子弹应回池、而非销毁");
+
+            var second = BulletLauncher.Fire(def, null, null, Vector3.zero, Vector3.forward)[0];
+            Assert.AreSame(first, second, "再次发射应复用回池的同一实例");
+            Assert.AreEqual(0, BulletLauncher.PooledCount, "复用后池应清空");
+
+            second.AutoTick = false;
+            Object.Destroy(second.gameObject); // second 当前活跃、不在池里，手动清理
+            BulletLauncher.ClearPool();
         }
     }
 }

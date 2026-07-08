@@ -20,6 +20,9 @@ namespace Likeon.GAS
         /// <summary>是否在 Update 里自动按 Time.deltaTime 推进（测试可关掉，改用手动 Tick）。</summary>
         public bool AutoTick { get; set; } = true;
 
+        /// <summary>是否由 BulletLauncher 池化管理（true=失效时回池复用、而非销毁）。直接 new 使用时为 false，行为不变。</summary>
+        internal bool Pooled { get; set; }
+
         /// <summary>命中时触发（targetASC 为命中的角色 ASC；命中地图几何时为 null）。</summary>
         public event Action<BulletInstance, AbilitySystemComponent, Vector3> OnHit;
         /// <summary>子弹失效（命中停下 / 生命到期）时触发。</summary>
@@ -126,7 +129,16 @@ namespace Likeon.GAS
                 BulletLauncher.Fire(Definition.HitBulletDefinition, Owner, SourceASC, position, transform.rotation);
 
             OnExpired?.Invoke(this);
-            Destroy(gameObject);
+            if (Pooled) BulletLauncher.Recycle(this); // 池化：回池复用
+            else Destroy(gameObject);                  // 独立使用：自销毁（行为不变）
+        }
+
+        // 回收进池前重置：清订阅者（复用不带旧回调）+ 置非活跃。event 只能在声明类内部置 null。
+        internal void ResetForPool()
+        {
+            OnHit = null;
+            OnExpired = null;
+            IsActive = false;
         }
 
         private sealed class HitDistanceComparer : IComparer<RaycastHit>
