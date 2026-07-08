@@ -6,6 +6,12 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.5] - 2026-07-08
+
+### Changed
+
+- **Expanded the usage guide** from an overview into a full reference matching the core package's depth: a quick start, the attack-pipeline anatomy, and per-system API + code for melee, ranged/bullets, lock-on targeting, poise/stagger, and weapons; field tables for `AttackDefinition` / `BulletDefinition`; the full `ICombatInterface` contract; teams; and damage/action selection. Docs only — no runtime/API change.
+
 ## [0.1.4] - 2026-07-05
 
 ### Changed

@@ -5,6 +5,12 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
+## [0.1.5] - 2026-07-08
+
+### 变更
+
+- **把使用指南从概览扩成完整参考**，对齐核心包的详尽程度：快速上手、攻击管线解剖，以及近战、远程/子弹、锁定、削韧/破防、武器各系统的 API + 代码；`AttackDefinition` / `BulletDefinition` 字段表；完整的 `ICombatInterface` 契约；阵营；伤害/动作选择。纯文档——无运行时/API 变化。
+
 ## [0.1.4] - 2026-07-05
 
 ### 变更

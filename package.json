@@ -1,6 +1,6 @@
 {
   "name": "com.likeon.gas.combat",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "displayName": "Sigil Combat - Melee, Ranged & Attack Companion",
   "description": "Combat companion for Sigil (com.likeon.gas). A data-driven melee & ranged combat layer built on the GAS core: attack definitions, hit detection (melee trace / collision trace), a combat flow pipeline (request → result → processors), poise & poise-break, targeting / lock-on, weapons, bullets, a team agent, and a damage execution calculation. Attribute-name-based (no hard-coded attribute sets) so it composes with your own codegen attributes. Depends on the Sigil core package. Independent Unity implementation; single-player authoritative.",
   "unity": "6000.4",
