@@ -5,6 +5,12 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
+## [Unreleased]
+
+### 修复
+
+- **战斗 Demo —— 替换示例脚本里已弃用的场景查找 API。** `CombatDemoEnemyAI` 与 `CombatDemoSmokeTest` 用了 `FindObjectsOfType<T>()` / `FindObjectOfType<T>()`，在 Unity 6000.x 上已弃用。改用当前的 `FindObjectsByType<T>()` / `FindAnyObjectByType<T>()` 重载（不排序 —— 原逻辑本就不依赖顺序），消除 CS0618 警告。仅示例、无运行时/API 变更。
+
 ## [0.1.6] - 2026-07-09
 
 ### 变更

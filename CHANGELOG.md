@@ -6,6 +6,12 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- **Combat Demo — replaced deprecated scene-lookup APIs in the sample scripts.** `CombatDemoEnemyAI` and `CombatDemoSmokeTest` used `FindObjectsOfType<T>()` / `FindObjectOfType<T>()`, which are obsolete on Unity 6000.x. Switched to the current `FindObjectsByType<T>()` / `FindAnyObjectByType<T>()` overloads (unsorted — no ordering was relied on), clearing the CS0618 warnings. Sample-only, no runtime/API change.
+
 ## [0.1.6] - 2026-07-09
 
 ### Changed

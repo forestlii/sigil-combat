@@ -100,7 +100,7 @@ namespace Likeon.GAS.Sample.CombatDemo
         {
             var self = GetComponent<CombatTeamAgent>();
             if (self == null) return null;
-            foreach (var agent in FindObjectsOfType<CombatTeamAgent>())
+            foreach (var agent in FindObjectsByType<CombatTeamAgent>())
             {
                 if (agent == self) continue;
                 if (self.GetAttitudeTowards(agent.gameObject) == ETeamAttitude.Hostile)

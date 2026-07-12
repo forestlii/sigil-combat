@@ -15,9 +15,9 @@ namespace Likeon.GAS.Sample.CombatDemo.Tests
         [UnityTearDown]
         public IEnumerator TearDown()
         {
-            foreach (var b in Object.FindObjectsOfType<BulletInstance>()) Object.Destroy(b.gameObject);
-            foreach (var a in Object.FindObjectsOfType<AbilitySystemComponent>()) Object.Destroy(a.gameObject);
-            foreach (var m in Object.FindObjectsOfType<MeshRenderer>()) if (m != null) Object.Destroy(m.gameObject);
+            foreach (var b in Object.FindObjectsByType<BulletInstance>()) Object.Destroy(b.gameObject);
+            foreach (var a in Object.FindObjectsByType<AbilitySystemComponent>()) Object.Destroy(a.gameObject);
+            foreach (var m in Object.FindObjectsByType<MeshRenderer>()) if (m != null) Object.Destroy(m.gameObject);
             yield return null;
             yield return null;
         }
@@ -150,7 +150,7 @@ namespace Likeon.GAS.Sample.CombatDemo.Tests
             input.ReceiveInput(CombatDemoTags.Input_Fireball, InputTriggerEvent.Canceled, InputActionData.Empty);
             yield return null;
 
-            Assert.IsNotNull(Object.FindObjectOfType<BulletInstance>(), "松手应发射火球（生成 BulletInstance）");
+            Assert.IsNotNull(Object.FindAnyObjectByType<BulletInstance>(), "松手应发射火球（生成 BulletInstance）");
 
             Object.Destroy(player);
             yield return null;
