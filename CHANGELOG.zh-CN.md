@@ -5,7 +5,7 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
-## [Unreleased]
+## [0.1.7] - 2026-07-14
 
 ### 修复
 
