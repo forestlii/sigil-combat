@@ -26,6 +26,10 @@ namespace Likeon.GAS
         // QueryAbilityActions 复用缓冲，避免每帧 GC
         private readonly List<AbilityAction> _actionQueryBuffer = new List<AbilityAction>();
 
+        // 顿帧协程句柄 + 进入顿帧前的基准速度（连续顿帧时用于正确恢复，避免捕获到已被降过的 speed）
+        private Coroutine _hitStop;
+        private float _hitStopBaseSpeed = 1f;
+
         /// <summary>受击时触发（本角色被命中）。</summary>
         public event Action<AttackResult> OnAttackResultReceived;
         /// <summary>命中他人时触发（本角色打中目标）。</summary>
@@ -73,16 +77,34 @@ namespace Likeon.GAS
         public void ApplyHitStop(float duration, float playRateFactor)
         {
             if (animator == null || duration <= 0f) return;
-            StopCoroutine(nameof(HitStopRoutine));
-            StartCoroutine(HitStopRoutine(duration, Mathf.Clamp(playRateFactor, 0.1f, 0.9f)));
+            // 若上一次顿帧还在进行：先停掉它并把速度恢复到基准，再以当前基准重新开始
+            // （string 版 StopCoroutine 停不掉方法引用启动的协程，且旧写法会把已降速的值当基准 → 动画永久变慢）
+            if (_hitStop != null)
+            {
+                StopCoroutine(_hitStop);
+                animator.speed = _hitStopBaseSpeed;
+            }
+            _hitStopBaseSpeed = animator.speed;
+            _hitStop = StartCoroutine(HitStopRoutine(duration, Mathf.Clamp(playRateFactor, 0.1f, 0.9f)));
         }
 
         private IEnumerator HitStopRoutine(float duration, float factor)
         {
-            float original = animator.speed;
-            animator.speed = original * factor;
+            animator.speed = _hitStopBaseSpeed * factor;
             yield return new WaitForSeconds(duration);
-            animator.speed = original;
+            animator.speed = _hitStopBaseSpeed;
+            _hitStop = null;
+        }
+
+        // 组件禁用期间协程会被杀掉，若正处于顿帧则 speed 会停在慢速 → 无条件恢复基准速度
+        protected virtual void OnDisable()
+        {
+            if (_hitStop != null)
+            {
+                StopCoroutine(_hitStop);
+                _hitStop = null;
+                if (animator != null) animator.speed = _hitStopBaseSpeed;
+            }
         }
 
         /// <summary>播放一个能力动作的动画（Animator State / Trigger）。的简化。</summary>

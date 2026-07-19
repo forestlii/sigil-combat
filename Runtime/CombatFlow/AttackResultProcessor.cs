@@ -49,7 +49,10 @@ namespace Likeon.GAS
             if (hp == null || hp.CurrentValue > 0f) return;
 
             var deadTag = DeadTag.IsValid ? DeadTag : GameplayTag.RequestTag("State.Dead");
-            if (!asc.HasMatchingGameplayTag(deadTag)) asc.AddLooseGameplayTag(deadTag);
+            // 去重提前：已死目标再被补刀/AOE 命中时整个处理只生效一次，
+            // 否则死亡事件会被反复广播 → 绑定死亡事件的技能/表现被重复触发。
+            if (asc.HasMatchingGameplayTag(deadTag)) return;
+            asc.AddLooseGameplayTag(deadTag);
 
             if (DeathEventTag.IsValid)
                 asc.SendGameplayEvent(DeathEventTag, new GameplayEventData(DeathEventTag)

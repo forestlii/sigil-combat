@@ -5,6 +5,13 @@
 Sigil Combat 的所有重要变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)，遵循 [语义化版本](https://semver.org/)。
 
+## [Unreleased]
+
+### 修复
+
+- **连续命中后顿帧不再让 Animator 永久变慢。** `ApplyHitStop` 用方法引用启动协程却用 string 版 `StopCoroutine` 去停（静默失败）；连续顿帧于是把彼此已降速的 `animator.speed` 当成恢复基准，动画卡在慢速。现在改为按句柄停协程、从捕获的基准速度恢复，并新增 `OnDisable`：组件在顿帧中途被禁用时无条件复位速度。
+- **已死目标不再在每次补刀时重复广播死亡事件。** `AttackResultProcessor_Death` 对"加 `State.Dead` 标签"做了去重，却没对死亡 `GameplayEvent` 去重，尸体每被再命中一次（补刀、持续 AOE）就重发一次死亡事件、反复触发绑定其上的技能/表现。现在把去重守卫提前 return，整个处理器每次死亡只跑一次。
+
 ## [0.1.7] - 2026-07-14
 
 ### 修复

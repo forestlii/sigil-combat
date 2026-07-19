@@ -6,6 +6,13 @@ All notable changes to Sigil Combat are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- **Hit-stop no longer permanently slows the animator after consecutive hits.** `ApplyHitStop` started the coroutine with a method reference but tried to stop it with the string overload of `StopCoroutine`, which silently fails; overlapping hit-stops then captured each other's already-slowed `animator.speed` as their restore baseline, leaving the animation stuck slow. It now tracks the coroutine by handle, restores from a captured baseline speed, and adds an `OnDisable` that restores the speed if the component is disabled mid-hit-stop.
+- **A dead target no longer re-broadcasts its death event on every follow-up hit.** `AttackResultProcessor_Death` deduplicated adding the `State.Dead` tag but not the death `GameplayEvent`, so every subsequent hit on a corpse (finisher, lingering AOE) re-fired the death event and re-triggered anything bound to it. The dedup guard now returns early, so the whole processor runs once per death.
+
 ## [0.1.7] - 2026-07-14
 
 ### Fixed
