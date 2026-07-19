@@ -110,6 +110,35 @@ namespace Likeon.GAS.PlayTests
             Assert.AreEqual(1, deathEvents, "应触发死亡事件");
         }
 
+        // ============ B2) 死亡事件对尸体不重复广播（P0-3 回归） ============
+        [UnityTest]
+        public IEnumerator B2_Death_EventNotRebroadcastOnFollowUpHits()
+        {
+            var (ownerAsc, combat, flow) = NewFighter(true);
+            var attacker = NewAttacker();
+            flow.Processors.Add(new AttackResultProcessor_Death
+            {
+                DeadTag = Tag("State.Dead"),
+                DeathEventTag = Tag("Event.Death")
+            });
+            yield return null;
+
+            int deathEvents = 0;
+            ownerAsc.OnGameplayEvent += (t, d) => { if (t.MatchesTagExact(Tag("Event.Death"))) deathEvents++; };
+
+            // 先把血打到 0
+            var hp = ownerAsc.GetAttributeSet<AS_Health>();
+            ownerAsc.ApplyModToAttributeBase(hp.HealthAttribute, EAttributeModifierOp.Override, 0f);
+
+            // 补刀 / 持续 AOE：对已死目标连续命中三次
+            combat.RegisterAttackResult(MakeResult(attacker));
+            combat.RegisterAttackResult(MakeResult(attacker));
+            combat.RegisterAttackResult(MakeResult(attacker));
+
+            Assert.IsTrue(ownerAsc.HasMatchingGameplayTag(Tag("State.Dead")), "仍应持有 State.Dead");
+            Assert.AreEqual(1, deathEvents, "死亡事件应只广播一次（修复前每次补刀都重发）");
+        }
+
         // ============ C) 事件处理器 + 目标标签过滤 ============
         [UnityTest]
         public IEnumerator C_GameplayEvent_TargetTagFilter()
