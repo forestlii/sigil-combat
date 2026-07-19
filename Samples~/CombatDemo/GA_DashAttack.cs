@@ -45,5 +45,12 @@ namespace Likeon.GAS.Sample.CombatDemo
             };
             wait.Activate();
         }
+
+        // 技能被打断/取消时 WaitDelay 的 OnFinish 不触发 → 兜底关判定，避免 trace 残留持续扫伤。
+        protected override void OnEndAbility(bool wasCancelled)
+        {
+            base.OnEndAbility(wasCancelled);
+            ASC?.GetComponent<MeleeAttackTrace>()?.EndAttackTrace();
+        }
     }
 }

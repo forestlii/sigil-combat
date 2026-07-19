@@ -19,10 +19,13 @@ namespace Likeon.GAS
         [SerializeField] private CharacterController characterController;
         [Tooltip("水平速度超过此值（米/秒）视为玩家在移动 → 取消动画 root motion")]
         [SerializeField] private float moveSpeedThreshold = 0.1f;
+        [Tooltip("窗口最长持续秒数，超时自动关闭兜底：动画被受击/切技能打断致 EndWindow 事件不触发时，防止 _windowOpen 残留、root motion 被永久禁用。<=0 关闭超时。")]
+        [SerializeField] private float maxWindowSeconds = 5f;
 
         private bool _windowOpen;
         private bool _rootMotionDisabled;
         private bool _savedApplyRootMotion;
+        private float _windowElapsed;
 
         /// <summary>取消窗口是否打开。</summary>
         public bool IsWindowOpen => _windowOpen;
@@ -40,6 +43,7 @@ namespace Likeon.GAS
         {
             _windowOpen = true;
             _rootMotionDisabled = false;
+            _windowElapsed = 0f;
         }
 
         /// <summary>Animation Event 在取消窗口终点调用（恢复 root motion）。</summary>
@@ -51,7 +55,24 @@ namespace Likeon.GAS
 
         private void Update()
         {
-            if (_windowOpen) Tick(IsMoving());
+            if (!_windowOpen) return;
+            if (maxWindowSeconds > 0f)
+            {
+                _windowElapsed += Time.deltaTime;
+                if (_windowElapsed >= maxWindowSeconds) { EndWindow(); return; } // 超时兜底：动画被打断没等到 EndWindow
+            }
+            Tick(IsMoving());
+        }
+
+        // 组件禁用兜底：动画被打断/组件禁用致 EndWindow 不触发时，_windowOpen 会残留、若正处于禁 root motion
+        // 则位移永久丢失。禁用时无条件恢复并关窗。
+        private void OnDisable()
+        {
+            if (_windowOpen)
+            {
+                _windowOpen = false;
+                Restore();
+            }
         }
 
         /// <summary>窗口期状态机：moving → 禁 root motion，否则恢复。可被测试直接驱动（绕过 IsMoving）。</summary>

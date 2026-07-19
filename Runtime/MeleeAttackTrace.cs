@@ -74,6 +74,14 @@ namespace Likeon.GAS
         /// <summary>关闭判定窗口。</summary>
         public void EndAttackTrace() => _active = false;
 
+        // 组件禁用兜底：清判定态与陈旧 socket 位置。否则禁用再启用后 _active 残留、_lastPositions 陈旧，
+        // 首帧 delta=cur-陈旧last 可能巨大 → 一次超长扫掠误命中。重新启用后靠 BeginAttackTrace 重新缓存。
+        private void OnDisable()
+        {
+            _active = false;
+            _lastPositions.Clear();
+        }
+
         // ===================== 判定扫描 =====================
         // 在动画 pose 应用后采样 socket 世界坐标，做球扫。
         private void LateUpdate()

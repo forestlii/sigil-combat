@@ -183,6 +183,36 @@ namespace Likeon.GAS.PlayTests
             Assert.AreEqual(friendHealth.MaxHealth.CurrentValue, friendHealth.Health.CurrentValue, 0.1f, "友军不应掉血");
         }
 
+        // ============ G) 子弹不命中发射者自身：复合碰撞体 + 无阵营（B3 回归）============
+        [UnityTest]
+        public IEnumerator G_Bullet_DoesNotHitOwner_CompoundCollider_NoTeam()
+        {
+            // owner：有 ASC + Health，但【无 CombatTeamAgent】（IsHostile 对无阵营 owner 返回 true）；
+            // 碰撞体挂在【子物体】上（复合碰撞体、root 无 Rigidbody）——正是 B3 会误命中自己的组合。
+            var owner = NewGo("Owner");
+            var ownerAsc = owner.AddComponent<AbilitySystemComponent>();
+            var ownerHealth = new AS_Health(); ownerAsc.AddAttributeSet(ownerHealth);
+            var hitbox = new GameObject("Hitbox"); _spawned.Add(hitbox);
+            hitbox.transform.SetParent(owner.transform, false);
+            (hitbox.AddComponent<SphereCollider>()).radius = 0.5f;
+            yield return new WaitForFixedUpdate();
+
+            var def = NewAsset<BulletDefinition>();
+            def.InitialSpeed = 10f; def.HitRadius = 0.3f; def.Duration = 1f;
+            def.Attack = MakeAttack(20f);
+
+            // 从 owner 身后 1m 出膛、朝前扫过 owner 自身碰撞体（干净扫入，非起始重叠）
+            var origin = owner.transform.position + new Vector3(0, 0, -1f);
+            var bullet = FireTracked(def, owner, origin, Vector3.forward)[0];
+            int hits = 0; bullet.OnHit += (b, t, p) => hits++;
+            float before = ownerHealth.Health.CurrentValue;
+
+            Drive(bullet, 0.05f, 20);
+
+            Assert.AreEqual(0, hits, "子弹不应命中发射者自身（复合碰撞体 + 无阵营）");
+            Assert.AreEqual(before, ownerHealth.Health.CurrentValue, 0.1f, "发射者不应自伤");
+        }
+
         // ============ F) 池化：失效回池 + 复用 ============
         [Test]
         public void F_ExpiredBullet_IsPooled_AndReused()

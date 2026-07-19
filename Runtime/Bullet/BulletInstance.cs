@@ -90,11 +90,16 @@ namespace Likeon.GAS
             var col = hit.collider;
             if (col == null) return false;
             var go = col.attachedRigidbody != null ? col.attachedRigidbody.gameObject : col.gameObject;
-            if (go == Owner) return false; // 不打发射者自身
+            // 不打发射者自身。用 IsChildOf 而非引用相等：复合碰撞体（子物体挂 collider、整条层级无 Rigidbody）时
+            // go 是子 collider 的 GameObject，直接 == Owner 会落空。
+            if (Owner != null && go.transform.IsChildOf(Owner.transform)) return false;
 
             var targetASC = go.GetComponentInParent<AbilitySystemComponent>();
             if (targetASC != null)
             {
+                // ASC 级自排除：owner 的 ASC 挂在父级时，上面的层级判断可能不覆盖，这里按 ASC 引用再兜一道
+                // （对齐近战 MeleeAttackTrace 的 targetGo == source 排除）。
+                if (SourceASC != null && targetASC == SourceASC) return false;
                 // 角色：去重 + 阵营（友军穿过）
                 if (_hitActors.Contains(targetASC.gameObject)) return false;
                 if (Owner != null && !CombatTeamAgent.IsHostile(Owner, targetASC.gameObject)) return false;

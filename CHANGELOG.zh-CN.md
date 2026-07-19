@@ -9,6 +9,10 @@ Sigil Combat 的所有重要变更记录于此。
 
 ### 修复
 
+- **近战判定现在在技能被取消时也会关闭，而不只是自然结束时。** 示例近战技能（`GA_MeleeAttack`、`GA_DashAttack`、`DemoMeleeAbility`）靠 `AbilityTask_WaitDelay.OnFinish` 关判定，而任务被外部取消时 OnFinish 不触发——被打断的攻击会让 `MeleeAttackTrace` 一直激活、持续扫伤。现在它们在 `OnEndAbility` 里也关判定；`MeleeAttackTrace` 新增 `OnDisable` 清判定态与陈旧 socket 位置（禁用/再启用不会产生首帧超长扫掠）。
+- **子弹不再透过复合碰撞体命中发射者自己。** 自身排除用 `col.attachedRigidbody.gameObject` 与 owner 比较，owner 的碰撞体挂在子物体、且无 Rigidbody 时会落空；叠加 `CombatTeamAgent.IsHostile` 对无阵营 owner 返回 true，子弹会命中并伤到发射者。自身排除改用 `Transform.IsChildOf(Owner)` + ASC 级判断（`targetASC == SourceASC`），与近战判定对齐。
+- **武器换主/重复装备不再泄漏标签。** `WeaponComponent.Equip` 直接覆盖 owner 不清旧主，注入的计数式 `Weapon.*` 松散标签永不移除（对同一 owner 重复装备还会累加计数）。现在 Equip 先撤下当前已注入的标签（用标志位跟踪）；`Unequip` 也会把近战判定的来源置空，不再指向旧 ASC。
+- **`MovementCancellation` 在动画被打断时不再永久禁用 root motion。** 窗口依赖 `BeginWindow`/`EndWindow` 动画事件配对；被打断的攻击不会发 `EndWindow`，`applyRootMotion` 卡在关闭。新增 `OnDisable` 恢复 root motion 并关窗，以及 `maxWindowSeconds` 超时（默认 5 秒）自动关闭开太久的窗口。
 - **连续命中后顿帧不再让 Animator 永久变慢。** `ApplyHitStop` 用方法引用启动协程却用 string 版 `StopCoroutine` 去停（静默失败）；连续顿帧于是把彼此已降速的 `animator.speed` 当成恢复基准，动画卡在慢速。现在改为按句柄停协程、从捕获的基准速度恢复，并新增 `OnDisable`：组件在顿帧中途被禁用时无条件复位速度。
 - **已死目标不再在每次补刀时重复广播死亡事件。** `AttackResultProcessor_Death` 对"加 `State.Dead` 标签"做了去重，却没对死亡 `GameplayEvent` 去重，尸体每被再命中一次（补刀、持续 AOE）就重发一次死亡事件、反复触发绑定其上的技能/表现。现在把去重守卫提前 return，整个处理器每次死亡只跑一次。
 

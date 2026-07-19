@@ -54,6 +54,7 @@ namespace Likeon.GAS
         private AbilitySystemComponent _ownerASC;
         private bool _active;
         private bool _targeting;
+        private bool _tagsApplied; // 武器标签是否当前已注入 _ownerASC（计数制，须与摘除严格配对，防泄漏/重复）
 
         // ---- IWeapon ----
         public GameObject WeaponOwner => _owner;
@@ -92,6 +93,12 @@ namespace Likeon.GAS
         /// <summary>装备到角色：关联 owner、可挂到挂点、把武器标签注入 owner ASC、给挥砍判定设来源。</summary>
         public void Equip(GameObject owner, Transform attachSocket = null)
         {
+            // 换主 / 重复装备：先撤下当前已注入旧主的武器标签（AddLooseGameplayTag 计数制，不撤会永久 +1 泄漏；
+            // 对同一 owner 重复 Equip 也会累加）。清干净再绑新主。
+            if (_tagsApplied && _ownerASC != null && applyWeaponTagsToOwner)
+                foreach (var t in weaponTags) _ownerASC.RemoveLooseGameplayTag(t);
+            _tagsApplied = false;
+
             _owner = owner;
             _ownerASC = owner != null ? owner.GetComponentInParent<AbilitySystemComponent>() : null;
 
@@ -105,7 +112,10 @@ namespace Likeon.GAS
             RefreshTraceInstances(); // 主 + 额外判定实例都设来源
 
             if (applyWeaponTagsToOwner && _ownerASC != null)
+            {
                 foreach (var t in weaponTags) _ownerASC.AddLooseGameplayTag(t);
+                _tagsApplied = true;
+            }
 
             OnEquipped?.Invoke(owner);
         }
@@ -116,8 +126,14 @@ namespace Likeon.GAS
             SetWeaponActive(false);
             SetTargeting(false);
 
-            if (applyWeaponTagsToOwner && _ownerASC != null)
+            if (_tagsApplied && _ownerASC != null && applyWeaponTagsToOwner)
                 foreach (var t in weaponTags) _ownerASC.RemoveLooseGameplayTag(t);
+            _tagsApplied = false;
+
+            // 断开判定实例的来源（否则卸下后 meleeTrace 的 source 仍指向旧 ASC，RefreshTraceInstances 只在 Equip 时调）
+            if (meleeTrace != null) meleeTrace.SetSource(null);
+            for (int i = 0; i < additionalTraces.Count; i++)
+                if (additionalTraces[i].Trace != null) additionalTraces[i].Trace.SetSource(null);
 
             _owner = null;
             _ownerASC = null;

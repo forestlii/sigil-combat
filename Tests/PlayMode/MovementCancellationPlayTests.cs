@@ -66,6 +66,23 @@ namespace Likeon.GAS.PlayTests
             Assert.IsFalse(mc.IsRootMotionDisabled);
         }
 
+        // ============ D) OnDisable 兜底恢复 root motion（B5 回归）============
+        [UnityTest]
+        public IEnumerator D_OnDisable_RestoresRootMotion()
+        {
+            var mc = NewComp(out var anim);
+            yield return null;
+
+            mc.BeginWindow();
+            mc.Tick(true);
+            Assert.IsFalse(anim.applyRootMotion, "移动时禁 root motion");
+
+            // 模拟动画被打断：EndWindow 没触发，组件被禁用 → 兜底应恢复
+            mc.enabled = false;
+            Assert.IsTrue(anim.applyRootMotion, "组件禁用应恢复 root motion（兜底，修复前会永久 false）");
+            Assert.IsFalse(mc.IsWindowOpen, "禁用应清窗口");
+        }
+
         // ============ C) 无 CharacterController → IsMoving false ============
         [UnityTest]
         public IEnumerator C_IsMoving_FalseWithoutController()

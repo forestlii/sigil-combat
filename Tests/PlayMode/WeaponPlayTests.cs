@@ -146,6 +146,42 @@ namespace Likeon.GAS.PlayTests
             Assert.AreEqual(before - 15f, health.Health.CurrentValue, 0.1f, "枪口发射的子弹应命中扣血 15");
         }
 
+        // ============ E) 换主（未先卸下）：旧主标签撤下、新主获得（B4 回归）============
+        [UnityTest]
+        public IEnumerator E_ReEquip_SwitchOwner_MovesTags_NoLeak()
+        {
+            var ownerA = NewOwner(); var ascA = ownerA.GetComponent<AbilitySystemComponent>();
+            var ownerB = NewOwner(); var ascB = ownerB.GetComponent<AbilitySystemComponent>();
+            var weapon = NewWeapon("Weapon.Sword");
+            yield return null;
+
+            weapon.Equip(ownerA);
+            Assert.IsTrue(ascA.HasMatchingGameplayTag(Tag("Weapon.Sword")), "A 装备后应有武器标签");
+
+            weapon.Equip(ownerB); // 直接换主，没先 Unequip
+            Assert.IsFalse(ascA.HasMatchingGameplayTag(Tag("Weapon.Sword")), "换主后 A 的武器标签应被撤下（修复前会泄漏残留）");
+            Assert.IsTrue(ascB.HasMatchingGameplayTag(Tag("Weapon.Sword")), "B 应获得武器标签");
+
+            weapon.Unequip();
+            Assert.IsFalse(ascB.HasMatchingGameplayTag(Tag("Weapon.Sword")), "卸下后 B 无残留");
+        }
+
+        // ============ F) 同一 owner 重复装备：一次卸下即净（B4 回归）============
+        [UnityTest]
+        public IEnumerator F_ReEquip_SameOwner_NoTagStacking()
+        {
+            var owner = NewOwner(); var asc = owner.GetComponent<AbilitySystemComponent>();
+            var weapon = NewWeapon("Weapon.Sword");
+            yield return null;
+
+            weapon.Equip(owner);
+            weapon.Equip(owner); // 对同一 owner 重复装备（修复前计数会累加到 2）
+            weapon.Unequip();    // 一次卸下
+
+            Assert.IsFalse(asc.HasMatchingGameplayTag(Tag("Weapon.Sword")),
+                "同一 owner 重复装备后一次卸下应无残留（修复前计数 +2/-1 会残留）");
+        }
+
         // ============ D) IWeapon 接口 ============
         [UnityTest]
         public IEnumerator D_IWeapon_Interface()

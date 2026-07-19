@@ -32,5 +32,13 @@ namespace Likeon.GAS.Sample.CombatDemo
             };
             wait.Activate();
         }
+
+        // 技能被打断/取消时 WaitDelay 的 OnFinish 不触发（任务被 ExternalCancel）→ 这里兜底关判定，
+        // 避免 MeleeAttackTrace._active 残留、持续球扫误伤。
+        protected override void OnEndAbility(bool wasCancelled)
+        {
+            base.OnEndAbility(wasCancelled);
+            ASC?.GetComponent<MeleeAttackTrace>()?.EndAttackTrace();
+        }
     }
 }
